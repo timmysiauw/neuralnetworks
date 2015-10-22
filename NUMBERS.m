@@ -61,11 +61,11 @@ for i = 1:10
 
 end
 
-% see distribution of guesses
+% see distribution of guess "weight"
 H = zeros(10,10);
 for i = 1:size(Xtest,1)
-    H(Ytest(i,:)==1,:) = nn.forward(Xtest(i,:));
+    H(Ytest(i,:)==1,:) = H(Ytest(i,:)==1,:) + nn.forward(Xtest(i,:))';
 end
 
-bar(100*H./(ones(10,1)*sum(H)))
+bar(H')
 legend({'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'})
